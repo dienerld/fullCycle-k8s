@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # Versão do recurso
+kind: ReplicaSet # Tipo de recurso
+metadata: # Metadados do recurso
+  name: goserver # Nome do recurso
+  labels:
+    app: goserver
+spec: # Especificação do recurso
+  selector:
+    matchLabels:
+      app: goserver
+  replicas: 2
+  template: # Modelo do recurso
+    metadata:
+      labels:
+        app: goserver
+    spec:
+      containers:
+        - name: goserver
+          image: dienerld/fc-k8s-server:2.0
+          ports:
+            - containerPort: 8080
